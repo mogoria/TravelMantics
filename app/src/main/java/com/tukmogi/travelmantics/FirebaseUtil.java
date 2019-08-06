@@ -8,7 +8,10 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,25 +22,31 @@ public class FirebaseUtil {
     static FirebaseAuth mFirebaseAuth;
     private static FirebaseAuth.AuthStateListener mAuthListener;
     private static Activity caller;
+    static FirebaseDatabase database;
+    static DatabaseReference myRef;
+    static ArrayList<TravelDeal> travelDeals;
 
     private FirebaseUtil() {}
 
-    static void openFbReference(Activity callerActivity) {
+    static void openFbReference(Activity callerActivity, String pathString) {
         caller = callerActivity;
         if(firebaseUtil == null) {
             firebaseUtil = new FirebaseUtil();
             FirebaseApp.initializeApp(caller);
-            mFirebaseAuth = FirebaseAuth.getInstance();
-            mAuthListener = new FirebaseAuth.AuthStateListener() {
-                @Override
-                public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                    FirebaseUser user = firebaseAuth.getCurrentUser();
-                    if (user==null) {
-                        FirebaseUtil.signIn();
-                    }
-                }
-            };
         }
+        travelDeals = new ArrayList<>();
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference().child(pathString);
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user==null) {
+                    FirebaseUtil.signIn();
+                }
+            }
+        };
     }
 
     private static void signIn() {
