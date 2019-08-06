@@ -9,7 +9,7 @@ public class TravelDeal {
 
     public TravelDeal() {}
 
-    public TravelDeal(String id, String title, String description, String price, String imageUrl) {
+    public TravelDeal(String title, String description, String price, String imageUrl) {
         this.setId(id);
         this.setTitle(title);
         this.setDescription(description);

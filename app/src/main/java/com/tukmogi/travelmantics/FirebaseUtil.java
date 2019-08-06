@@ -5,6 +5,8 @@ import android.app.Activity;
 import androidx.annotation.NonNull;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,18 +19,18 @@ import java.util.List;
 
 public class FirebaseUtil {
 
-    static final int RC_SIGN_IN = 254;
+    private static final int RC_SIGN_IN = 254;
     private static FirebaseUtil firebaseUtil;
-    static FirebaseAuth mFirebaseAuth;
+    public static FirebaseAuth mFirebaseAuth;
     private static FirebaseAuth.AuthStateListener mAuthListener;
     private static Activity caller;
-    static FirebaseDatabase database;
-    static DatabaseReference myRef;
-    static ArrayList<TravelDeal> travelDeals;
+    public static FirebaseDatabase database;
+    public static DatabaseReference myRef;
+    public static ArrayList<TravelDeal> travelDeals;
 
     private FirebaseUtil() {}
 
-    static void openFbReference(Activity callerActivity, String pathString) {
+    public static void openFbReference(Activity callerActivity, String pathString) {
         caller = callerActivity;
         if(firebaseUtil == null) {
             firebaseUtil = new FirebaseUtil();
@@ -65,11 +67,21 @@ public class FirebaseUtil {
     }
 
 
-    static void attachListener() {
+    public static void attachListener() {
         mFirebaseAuth.addAuthStateListener(mAuthListener);
     }
 
-    static void dettachListener() {
+    public static void dettachListener() {
         mFirebaseAuth.removeAuthStateListener(mAuthListener);
+    }
+
+    public static void logout() {
+        AuthUI.getInstance().signOut(caller).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                FirebaseUtil.attachListener();
+            }
+        });
+        FirebaseUtil.dettachListener();
     }
 }
