@@ -25,7 +25,7 @@ public class TravelDealAdapter extends RecyclerView.Adapter<TravelDealAdapter.Vi
     private ArrayList<TravelDeal> deals;
     private static final String TAG = "TravelDealAdapter";
 
-    TravelDealAdapter(Context context) {
+    public TravelDealAdapter(Context context) {
         deals = new ArrayList<>();
         FirebaseUtil.openFbReference((Activity) context, "traveldeals");
         DatabaseReference mDatabaseRef = FirebaseUtil.myRef;
@@ -74,10 +74,10 @@ public class TravelDealAdapter extends RecyclerView.Adapter<TravelDealAdapter.Vi
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle, tvDescription, tvPrice;
-        ImageView imgDeals;
+        private TextView tvTitle, tvDescription, tvPrice;
+        private ImageView imgDeals;
 
-        ViewHolder(View view) {
+        public ViewHolder(View view) {
             super(view);
             tvTitle = view.findViewById(R.id.tvTitle);
             tvDescription = view.findViewById(R.id.tvDescription);
@@ -85,7 +85,7 @@ public class TravelDealAdapter extends RecyclerView.Adapter<TravelDealAdapter.Vi
             imgDeals = view.findViewById(R.id.deals_image);
         }
 
-        void bind(TravelDeal deal) {
+        protected void bind(TravelDeal deal) {
             tvTitle.setText(deal.getTitle());
             tvDescription.setText(deal.getDescription());
             tvPrice.setText(deal.getPrice());

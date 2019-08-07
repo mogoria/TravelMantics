@@ -5,25 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
 
-import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "MainActivity";
-    private static final int RC_SIGN_IN = 254;
-
-    private ArrayList<TravelDeal> travelDeals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,14 +51,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.logout_menu:
-                AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Log.d(TAG, "onComplete: User logged out");
-                        FirebaseUtil.attachListener();
-                    }
-                });
-                FirebaseUtil.dettachListener();
+                FirebaseUtil.logout();
+                return true;
+
+            case R.id.new_travel_deal:
+                startActivity(new Intent(MainActivity.this,
+                        InsertActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

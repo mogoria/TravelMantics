@@ -5,4 +5,10 @@
     <string name="sample_description">Las vegas holiday resort. A place to relax and enjoy with family.</string>
     <string name="sample_price">15000</string>
     <string name="deals_image">Deals image</string>
+    <string name="new_travel_deal">New Travel Deal</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="price">Price</string>
+    <string name="select_image">Select Image</string>
+    <string name="save">Save</string>
 </resources>
