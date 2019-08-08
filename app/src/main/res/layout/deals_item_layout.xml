@@ -12,13 +12,14 @@
     android:layout_gravity="center"
     app:cardElevation="3dp">
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/deals_image"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="@dimen/image_size_small"
+            android:layout_height="@dimen/image_size_small"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src=""
@@ -29,21 +30,22 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="@dimen/margin_standard"
             android:text="@string/sample_title"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tvDescription"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvDescription"
-            android:layout_width="250dp"
+            android:layout_width="230dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
             android:layout_marginTop="12dp"
+            android:layout_marginEnd="@dimen/margin_standard"
+            android:layout_marginStart="@dimen/margin_standard"
+            android:fontFamily="@font/amarante"
             android:text="@string/sample_description"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/deals_image"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
@@ -53,8 +55,8 @@
             android:textAppearance="@style/TextPriceStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="@dimen/margin_standard"
+            android:layout_marginEnd="@dimen/margin_standard"
             android:text="@string/sample_price"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
