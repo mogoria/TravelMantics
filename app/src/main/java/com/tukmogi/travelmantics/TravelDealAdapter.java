@@ -17,6 +17,7 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -85,10 +86,20 @@ public class TravelDealAdapter extends RecyclerView.Adapter<TravelDealAdapter.Vi
             imgDeals = view.findViewById(R.id.deals_image);
         }
 
-        protected void bind(TravelDeal deal) {
+        private void bind(TravelDeal deal) {
             tvTitle.setText(deal.getTitle());
             tvDescription.setText(deal.getDescription());
             tvPrice.setText(deal.getPrice());
+            showImage(deal.getImageUrl());
+        }
+
+        private void showImage(String uri) {
+            if(uri!=null && uri.equals("")) return;
+            Picasso.get()
+                    .load(uri)
+                    .resize(80, 80)
+                    .centerCrop()
+                    .into(imgDeals);
         }
     }
 
