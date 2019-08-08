@@ -4,4 +4,7 @@
     <dimen name="deals_item_margin_bottom">10dp</dimen>
     <dimen name="deals_item_margin_start">10dp</dimen>
     <dimen name="deals_item_margin_end">10dp</dimen>
+    <dimen name="image_size_small">120dp</dimen>
+    <dimen name="margin_standard">8dp</dimen>
+    <dimen name="margin_large">10dp</dimen>
 </resources>
