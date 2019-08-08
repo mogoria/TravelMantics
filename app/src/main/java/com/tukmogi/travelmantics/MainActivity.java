@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.new_travel_deal:
                 startActivity(new Intent(MainActivity.this,
-                        InsertActivity.class));
+                        DealsActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
